@@ -15,9 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function() {
+    // 取得使用者資訊
+    Route::get('/user', function(Request $request) {
+        return $request->user();
+    });
+
+    // 使用者登出
+    Route::post('logout', [AuthController::class, 'logout']);
 });
 
+// 使用者登入
 Route::post('login', [AuthController::class, 'login']);
-Route::post('logout', [AuthController::class, 'logout']);

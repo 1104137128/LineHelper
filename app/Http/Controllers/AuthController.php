@@ -9,11 +9,18 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
+    /**
+     * 使用者登入
+     *
+     * @param LoginRequest $request
+     */
     public function login(LoginRequest $request)
     {
-        $credentials = $request->validate();
+        // 取得使用者帳密
+        $credentials = $request->validated();
 
-        if (! Auth::attempt([$credentials])) {
+        // 驗證使用者帳密
+        if (! Auth::attempt($credentials)) {
             return response([
                 'message' => 'Provided email or password is incorrect.'
             ]);
@@ -22,9 +29,15 @@ class AuthController extends Controller
         /** @var User $user */
         $user = Auth::user();
         $token = $user->createToken('main')->plainTextToken;
+
         return response(compact('user', 'token'));
     }
 
+    /**
+     * 使用者登出
+     *
+     * @param Request $request
+     */
     public function logout(Request $request)
     {
         /** @var User $user */
