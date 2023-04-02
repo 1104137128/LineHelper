@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ScheduleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,8 +23,18 @@ Route::middleware('auth:sanctum')->group(function() {
     });
 
     // 使用者登出
-    Route::post('logout', [AuthController::class, 'logout']);
+    Route::post('/logout', [AuthController::class, 'logout']);
 });
 
 // 使用者登入
-Route::post('login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login']);
+
+// 取得PTT排程列表、設置PTT排程
+Route::post('/ptt', [ScheduleController::class, 'createPttSchedule']);
+Route::get('/ptt/{id?}', [ScheduleController::class, 'getPttSchedule']);
+Route::put('/ptt/{id}', [ScheduleController::class, 'updatePttSchedule']);
+
+// 取得Stock排程列表、設置Stock排程
+Route::post('/stock', [ScheduleController::class, 'createStockSchedule']);
+Route::get('/stock/{id?}', [ScheduleController::class, 'getStockSchedule']);
+Route::put('/stock/{id}', [ScheduleController::class, 'updateStockSchedule']);
