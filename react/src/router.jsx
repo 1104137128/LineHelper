@@ -1,27 +1,49 @@
 import {createBrowserRouter, Navigate} from 'react-router-dom';
 import Login from './views/Login.jsx';
-import Users from './views/Users.jsx';
 import NotFound from './views/NotFound.jsx';
-import Dashboard from './views/Dashboard.jsx';
+import Stock from './views/StockSchedule.jsx';
 import GuestLayout from './components/GuestLayout.jsx';
 import DefaultLayout from './components/DefaultLayout.jsx';
+import Ptt from './views/PttSchedule.jsx';
+import PttScheduleForm from './views/PttScheduleForm.jsx';
+import StockScheduleForm from './views/StockScheduleForm.jsx';
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <Navigate to="/users" />
+        element: <Navigate to="/ptt" />
     },
     {
         path: '/',
         element: <DefaultLayout />,
         children: [
             {
-                path: '/dashboard',
-                element: <Dashboard />
+                path: '/ptt',
+                element: <Ptt />
             },
             {
-                path: '/users',
-                element: <Users />
+                path: '/ptt/new',
+                element: <PttScheduleForm key="pttScheduleCreate" />
+            },
+            {
+                path: '/ptt/:id',
+                element: <PttScheduleForm key="pttScheduleUpdate" />
+            },
+            {
+                path: '/stock',
+                element: <Stock />
+            },
+            {
+                path: '/stock/new',
+                element: <StockScheduleForm key="stockScheduleCreate" />
+            },
+            {
+                path: '/stock/:id',
+                element: <StockScheduleForm key="stockScheduleUpdate" />
+            },
+            {
+                path: '/ecpay',
+                element: <StockScheduleForm key="stockScheduleUpdate" />
             },
         ]
     },
