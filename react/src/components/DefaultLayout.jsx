@@ -31,8 +31,9 @@ export default function DefaultLayout() {
     return (
         <div id="defaultLayout">
             <aside>
-                <Link to="/dashboard">Dashboard</Link>
-                <Link to="/users">Users</Link>
+                <Link to="/ptt">PTT</Link>
+                <Link to="/stock">股票</Link>
+                <Link to="/ecpay">串接綠界</Link>
             </aside>
             <div className="content">
                 <header>
