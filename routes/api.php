@@ -28,6 +28,7 @@ Route::middleware('auth:sanctum')->group(function() {
 
 // 使用者登入
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login_fb', [AuthController::class, 'login_fb']);
 
 // 取得PTT排程列表、設置PTT排程
 Route::post('/ptt', [ScheduleController::class, 'createPttSchedule']);

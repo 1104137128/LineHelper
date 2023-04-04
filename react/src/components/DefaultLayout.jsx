@@ -13,6 +13,8 @@ export default function DefaultLayout() {
     const onLogout = (ev) => {
         ev.preventDefault();
 
+        window.FB.logout();
+
         // 登出API
         axiosClient.post('/logout').then(() => {
             // 清空資訊
