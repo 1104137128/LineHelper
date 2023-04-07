@@ -212,4 +212,5 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
+    'line_bot_token' => env('LINE_BOT_TOKEN')
 ];

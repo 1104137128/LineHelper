@@ -11,10 +11,7 @@ use App\Models\StockScheduleModel;
 class Kernel extends ConsoleKernel
 {
 
-    private $headers = [
-        'Content-Type: multipart/form-data',
-        'Authorization: Bearer 66sPQxfXIL6qT3340pwIz6ULNEqZ6iS5qg9QGUL2xqc'
-    ];
+    private $headers;
 
     /**
      * Define the application's command schedule.
@@ -22,6 +19,11 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
+
+        $this->headers = [
+            'Content-Type: multipart/form-data',
+            'Authorization: ' . config('app.line_bot_token')
+        ];
 
         $schedule->call(function () {
             PttScheduleModel::get()->map(function($ptt) {
